@@ -32,8 +32,8 @@ def closest_value(arr, k):
         return best
 while True:
 #    try:
-  InputRange = int(input())
-  break
+    InputRange = int(input())
+    break
 #    except:
 #        print("try again")
 start = t.time()
@@ -42,29 +42,45 @@ while len(primes) < InputRange:
     currentNum += 2
     limit = closest_value(primes, m.ceil(m.sqrt(currentNum)))
     try:
-      limitIndex = primes.index(limit)
+        limitIndex = primes.index(limit)
     except ValueError:
-      limitIndex = 12
+        limitIndex = 12
     for j in range (0,limitIndex+1):
         if currentNum % primes[j] == 0:
-          isPrime = False
-          break
+            isPrime = False
+            break
     if isPrime:
-      primes.append(currentNum)
+        primes.append(currentNum)
 end = t.time()
 print(end-start)
-with open("1stmillionPrimes.txt",mode="w") as file:
-    for i in range (0,len(primes)-1):
-        line = (str(primes[i]))
-        line += ","
-        file.write(line)
-    file.flush()
-    file.close()
-print("write complete")
+savePrimes = False
 while True:
     try:
-        index = int(input())
-        print(primes[index-1])
+        usrInput = input("write to file?\n(y)es (n)o\n")
+        if usrInput == "y":
+            savePrimes = True
+            break
+        elif usrInput != "y":
+            savePrime = False
+            break
     except:
         print("try again")
-
+if savePrimes == True:
+    with open("1stmillionPrimes.txt",mode="w") as file:
+        for i in range (0,len(primes)-1):
+            line = (str(primes[i]))
+            line += ","
+            file.write(line)
+        file.flush()
+        file.close()
+        print("write complete")
+while True:
+    try:
+        index = input()
+        index = int(index)
+        print(primes[index-1])
+    except:
+        if index == "q":
+            break
+        else:
+            print("try again")
