@@ -53,7 +53,7 @@ while len(primes) < InputRange:
       primes.append(currentNum)
 end = t.time()
 print(end-start)
-with open("like, a lot of primes.txt",mode="w") as file:
+with open("1stmillionPrimes.txt",mode="w") as file:
     for i in range (0,len(primes)-1):
         line = (str(primes[i]))
         line += ","
@@ -67,3 +67,4 @@ while True:
         print(primes[index-1])
     except:
         print("try again")
+
