@@ -1,4 +1,4 @@
-primeFile = open("like, a lot of primes.txt", "r")
+primeFile = open("1stmillionPrimes.txt", "r")
 primesList = []
 primes = primeFile.readline()
 parsedFile = primes.split(",")
@@ -16,4 +16,5 @@ while True:
         else:
             print("try again\n if you want to exit this promgram, enter q")
 #TODO: add a mode to find if a number is prime (if in the list)
+
 #DONE: add a quit option
