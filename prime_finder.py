@@ -31,28 +31,36 @@ def closest_value(arr, k):
         # tie-breaker: pick the greater value
         return best
 while True:
-#    try:
-    InputRange = int(input())
-    break
-#    except:
-#        print("try again")
-start = t.time()
-while len(primes) < InputRange:
-    isPrime = True
-    currentNum += 2
-    limit = closest_value(primes, m.ceil(m.sqrt(currentNum)))
     try:
-        limitIndex = primes.index(limit)
-    except ValueError:
-        limitIndex = 12
-    for j in range (0,limitIndex+1):
-        if currentNum % primes[j] == 0:
-            isPrime = False
-            break
-    if isPrime:
-        primes.append(currentNum)
+        InputRange = int(input("max prime number to search to\n"))
+        break
+    except:
+        print("try again")
+while True:
+    try:
+        InputTime = int(input("max time to run for\n"))
+        break
+    except:
+        print("try again")
+start = t.time()
+while len(primes) < InputRange and t.time() - start < InputTime:
+    for c in range (0,100):
+        isPrime = True
+        currentNum += 2
+        limit = closest_value(primes, m.ceil(m.sqrt(currentNum)))
+        try:
+            limitIndex = primes.index(limit)
+        except ValueError:
+            limitIndex = 12
+        for j in range (0,limitIndex+1):
+            if currentNum % primes[j] == 0:
+                isPrime = False
+                break
+        if isPrime:
+            primes.append(currentNum)
 end = t.time()
 print(end-start)
+print("found the first ", len(primes), " primes")
 savePrimes = False
 while True:
     try:
@@ -66,7 +74,7 @@ while True:
     except:
         print("try again")
 if savePrimes == True:
-    with open("1stmillionPrimes.txt",mode="w") as file:
+    with open("like, a lot of primes.txt",mode="w") as file:
         for i in range (0,len(primes)-1):
             line = (str(primes[i]))
             line += ","
