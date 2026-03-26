@@ -30,9 +30,24 @@ def closest_value(arr, k):
             best = max(best, value)
         # tie-breaker: pick the greater value
         return best
+
+def parser(List):
+    List = []
+    File = open("like, a lot of primes (2).txt", "r")
+    primes = File.readline()
+    parsedFile = primes.split(",")
+    primes = ""
+    for i in range (0,len(parsedFile)-1):
+        List.append(int(parsedFile[i]))
+    return List
+
+primes = parser(primes)
+currentNum = primes[len(primes)-1]
+print(currentNum)
+print("length: ", len(primes))
 while True:
     try:
-        InputRange = int(input("max prime number to search to\n"))
+        InputRange = int(input("max number of primes to get\n"))
         break
     except:
         print("try again")
@@ -42,8 +57,14 @@ while True:
         break
     except:
         print("try again")
+while True:
+    try:
+        InputNum = int(input("max number to check up to\n"))
+        break
+    except:
+        print("try again")
 start = t.time()
-while len(primes) < InputRange and t.time() - start < InputTime:
+while len(primes) < InputRange and t.time() - start < InputTime and InputNum > currentNum:
     for c in range (0,100):
         isPrime = True
         currentNum += 2
@@ -58,6 +79,8 @@ while len(primes) < InputRange and t.time() - start < InputTime:
                 break
         if isPrime:
             primes.append(currentNum)
+        if InputNum < currentNum:
+            break
 end = t.time()
 print(end-start)
 print("found the first ", len(primes), " primes")
@@ -74,8 +97,8 @@ while True:
     except:
         print("try again")
 if savePrimes == True:
-    with open("like, a lot of primes.txt",mode="w") as file:
-        for i in range (0,len(primes)-1):
+    with open("like, a lot of primes (2).txt",mode="w") as file:
+        for i in range (0,len(primes)):
             line = (str(primes[i]))
             line += ","
             file.write(line)
