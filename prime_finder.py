@@ -79,8 +79,6 @@ while len(primes) < InputRange and t.time() - start < InputTime and InputNum > c
                 break
         if isPrime:
             primes.append(currentNum)
-        if InputNum < currentNum:
-            break
 end = t.time()
 print(end-start)
 print("found the first ", len(primes), " primes")
@@ -88,15 +86,18 @@ savePrimes = False
 while True:
     try:
         usrInput = input("write to file?\n(y)es (n)o\n")
-        if usrInput == "y":
+        if usrInput.lower() == "y":
             savePrimes = True
             break
-        elif usrInput != "y":
+        elif usrInput.lower() == "n":
             savePrime = False
             break
+        else:
+            print("nuh uh")
     except:
         print("try again")
 if savePrimes == True:
+    print("writing...")
     with open("like, a lot of primes (2).txt",mode="w") as file:
         for i in range (0,len(primes)):
             line = (str(primes[i]))
